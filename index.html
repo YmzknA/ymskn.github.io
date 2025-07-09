@@ -3,311 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>たのしくなる仕組みをつくろう - Official Site</title>
+    <title>たのしくなる仕組みをつくろう - Top</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Top Page Styles */
+        :root {
+            --primary-color: #B5A084;
+            --secondary-color: #C4B896;
+            --accent-color: #D4C8A8;
+            --background-light: #FCF9F4;
+            --background-white: #FFFFFF;
+            --text-primary: #3D3A36;
+            --text-secondary: #6B6860;
+            --text-muted: #9B9690;
+            --border-color: #EEEAE3;
+            --gradient-primary: linear-gradient(135deg, #B5A084 0%, #C4B896 100%);
+            --gradient-secondary: linear-gradient(135deg, #D4C8A8 0%, #E6DAC4 100%);
+            --shadow-light: 0 4px 20px rgba(181, 160, 132, 0.08);
+            --shadow-medium: 0 8px 32px rgba(181, 160, 132, 0.12);
+            --shadow-strong: 0 16px 48px rgba(181, 160, 132, 0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--gradient-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .top-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            opacity: 0.7;
+            margin: 0 auto 40px;
+            background-image: url('images/logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .start-button {
+            background: white;
+            color: var(--primary-color);
+            padding: 20px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            border: none;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .start-button:hover {
+            background: var(--background-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .start-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Background Animation */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .background-animation::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .background-animation::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float2 10s ease-in-out infinite reverse;
+        }
+
+        .background-element {
+            position: absolute;
+            border-radius: 50%;
+            animation: float3 12s ease-in-out infinite;
+        }
+
+        .background-element:nth-child(1) {
+            top: 10%;
+            right: 20%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.08);
+            animation-delay: -2s;
+        }
+
+        .background-element:nth-child(2) {
+            bottom: 30%;
+            left: 15%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.06);
+            animation-delay: -4s;
+            animation-duration: 14s;
+        }
+
+        .background-element:nth-child(3) {
+            top: 60%;
+            right: 5%;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            animation-delay: -6s;
+            animation-duration: 16s;
+        }
+
+        .background-element:nth-child(4) {
+            top: 20%;
+            left: 5%;
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.04);
+            animation-delay: -8s;
+            animation-duration: 18s;
+        }
+
+        .background-element:nth-child(5) {
+            bottom: 10%;
+            left: 40%;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.07);
+            animation-delay: -10s;
+            animation-duration: 20s;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) translateX(10px) rotate(120deg); }
+            66% { transform: translateY(10px) translateX(-5px) rotate(240deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .start-button {
+                padding: 16px 36px;
+                font-size: 1rem;
+                min-width: 180px;
+            }
+            
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .top-container {
+                padding: 20px;
+            }
+            
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>たのしくなる仕組みをつくろう</h1>
-            </div>
-            <div class="nav-menu">
-                <a href="#profile" class="nav-link">プロフィール</a>
-                <a href="#about" class="nav-link">理念</a>
-                <a href="#story" class="nav-link">ストーリー</a>
-                <a href="#future" class="nav-link">ビジョン</a>
-            </div>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <main class="page-content">
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-background-element"></div>
-            <div class="hero-background-element"></div>
-            <div class="hero-background-element"></div>
-            <div class="hero-background-element"></div>
-            <div class="hero-container">
-                <div class="hero-content">
-                        <h1 class="hero-title">たのしくなる</h1>
-                        <h1 class="hero-title">仕組みをつくろう</h1>
-                    <p class="hero-subtitle">Let's create mechanisms that make things fun</p>
-                    <div class="hero-description">
-                        <p>やる気じゃ続かない。勝手にやっちゃう仕組みを作る。</p>
-                        <p>そんな考えを大切にしながら、プログラミングと向き合っています。</p>
-                    </div>
-                    <div class="hero-cta">
-                        <a href="#profile" class="btn btn-primary">プロフィールを見る</a>
-                        <a href="#about" class="btn btn-secondary">理念を読む</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Profile Section -->
-        <section id="profile" class="profile">
-            <div class="container">
-                <div class="section-header">
-                    <h2>プロフィール</h2>
-                    <p>自己紹介</p>
-                </div>
-                <div class="profile-content">
-                    <div class="profile-main">
-                        <div class="profile-card">
-                            <div class="profile-left">
-                                <div class="profile-photo">
-                                    <img src="images/ymzkn.png" alt="やま さかな" width="120" height="120">
-                                </div>
-                            </div>
-                            <div class="profile-center">
-                                <div class="profile-header">
-                                    <h3>やま さかな</h3>
-                                    <p class="profile-position">RUNTEQ 61期</p>
-                                </div>
-                                <div class="profile-skills">
-                                    <div class="skill-item">
-                                        <div class="skill-icon">💻</div>
-                                        <div class="skill-content">
-                                            <h4>Programming</h4>
-                                            <p>Ruby on Rails, JavaScript, Hotwire</p>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item">
-                                        <div class="skill-icon">☕</div>
-                                        <div class="skill-content">
-                                            <h4>Previous Job</h4>
-                                            <p>紙カップ式自販機ルートセールス</p>
-                                        </div>
-                                    </div>
-                                    <div class="skill-item">
-                                        <div class="skill-icon">🌱</div>
-                                        <div class="skill-content">
-                                            <h4>My App</h4>
-                                            <p>🌟「星にタスクを」</p>
-                                            <p>🌱「ちいくさ日記」</p>
-                                            <p>🔗「FlowCodeLinks」</p>
-                                            <p>バトルオブランテックに出場中！</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="profile-right">
-                                <div class="profile-decoration">
-                                    <div class="decoration-item">
-                                        <div class="decoration-icon app-icon" data-app="star-task">🌟</div>
-                                    </div>
-                                    <div class="decoration-item">
-                                        <div class="decoration-icon app-icon" data-app="chiikusa">🌱</div>
-                                    </div>
-                                    <div class="decoration-item">
-                                        <div class="decoration-icon app-icon" data-app="flowcodelinks">🔗</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="section-header">
-                    <h2>理念</h2>
-                    <p>私が大切にしている考え方</p>
-                </div>
-                <div class="about-content">
-                    <div class="about-main">
-                        <div class="about-card">
-                            <div class="card-icon">😊</div>
-                            <h3>やる気じゃ続かない</h3>
-                            <p>「やらなきゃいけないことを、気合いと根性でやる」ってのが本当に苦手。「うっかり気づいたらやってたわ」ってくらいのノリじゃないと続かないタイプです。</p>
-                        </div>
-                        <div class="about-card highlight">
-                            <div class="card-icon">🎯</div>
-                            <h3>仕組みを先に作る</h3>
-                            <p><strong>"たのしくなる仕組み"を先に用意して、気づいたら手を動かしてる</strong>そんな状態を自分でつくるようにしています。</p>
-                        </div>
-                        <div class="about-card">
-                            <div class="card-icon">🔄</div>
-                            <h3>自然と続くループ</h3>
-                            <p>アプリ開発で自然と続くループが最高。作って、公開して、改善して、また作って。勝手にリンクして学習できてる。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Story Section -->
-        <section id="story" class="story">
-            <div class="container">
-                <div class="section-header">
-                    <h2>ストーリー</h2>
-                    <p>どんな道のりを歩んできたのか</p>
-                </div>
-                <div class="story-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-icon">☕</div>
-                        <div class="timeline-content">
-                            <h3>前職は紙コップ式自販機マン</h3>
-                            <p>紙コップ式の自販機を扱う会社でルートセールスをやっていました。</p>
-                            <p>自販機って意外と可愛いんです。故障したら「どうして〜？」ってなるし、ちゃんと動いてると誇らしい。</p>
-                            <div class="achievement">
-                                <span class="badge">スーパールートセールス</span>
-                                <p>全国700人の中から5人選ばれる「スーパールートセールス」になりました。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">🔧</div>
-                        <div class="timeline-content">
-                            <h3>コードは無限に試せて、性に合ってた</h3>
-                            <p>プログラミングって、「試して→直して→また試して」って無限にできるのがいい。</p>
-                            <ul>
-                                <li>物理的な部品もいらない</li>
-                                <li>在庫もいらない</li>
-                                <li>ただ画面の中で、ひたすら作って壊して、また作って</li>
-                            </ul>
-                                <p class="quote">あの頃、自販機の不具合で悩んでた自分に言いたい。<br><strong>「君、たぶんプログラミングのほうが向いてるよ」</strong>って。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Future Section -->
-        <section id="future" class="future">
-            <div class="container">
-                <div class="section-header">
-                    <h2>ビジョン</h2>
-                    <p>これからどうなりたいか</p>
-                </div>
-                <div class="future-content">
-                    <div class="future-main">
-                        <div class="future-card">
-                            <div class="card-icon">🎯</div>
-                            <h3>誰かの「やりたい」を引き出す仕組みを作れる人になりたい</h3>
-                            <p>「気づいたらハマってた」みたいな、<strong>ユーザーにとっても「たのしくなる仕組み」</strong>をつくる側にまわりたいと思います。</p>
-                        </div>
-                        <div class="future-card">
-                            <div class="card-icon">📚</div>
-                            <h3>自分が一番たのしめるやり方で学ぶ</h3>
-                            <p>そのために、今は自分が一番たのしめるやり方で学んでいます。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Message Section -->
-        <section id="message" class="message">
-            <div class="container">
-                <div class="message-content">
-                    <div class="message-main">
-                        <h2>さいごに</h2>
-                        <div class="message-text">
-                            <p>「やらなきゃ…」ってしんどくなるより、「ちょっと遊びでやってみよ〜」くらいのテンションのほうが、結果的に前に進めるタイプでした。</p>
-                            <p class="highlight">真面目な学び方が合わない人、全然いると思うんですけど、<strong>「自分だけの楽しさ」って、ほんとに武器になるんで、</strong>ぜひ見つけてみてください！</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2>コンタクト</h2>
-                    <p>お気軽にお声がけください</p>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-card">
-                        <div class="profile-info">
-                            <div class="profile-photo">
-                                <img src="images/ymzkn.png" alt="やま さかな" width="80" height="80">
-                            </div>
-                            <div class="profile-details">
-                                <h3>やま さかな</h3>
-                                <p>RUNTEQ 61期</p>
-                                <div class="skills">
-                                    <span class="skill-tag">Ruby on Rails</span>
-                                    <span class="skill-tag">JavaScript</span>
-                                    <span class="skill-tag">Hotwire</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contact-info">
-                            <p>プログラミングや「たのしくなる仕組み」について、お話しできればと思います。</p>
-                            <div class="qr-code">
-                                <img src="images/qr.png" alt="QRコード" width="160" height="160">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- App Modal -->
-    <div class="app-modal" id="appModal">
-        <div class="modal-overlay" id="modalOverlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle">アプリ紹介</h3>
-                <button class="modal-close" id="modalClose">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="app-image-container">
-                    <img class="app-image" id="modalImage" src="" alt="アプリ画像">
-                </div>
-                <div class="app-description">
-                    <h4 class="app-name" id="modalAppName">アプリ名</h4>
-                    <p class="app-details" id="modalDescription">アプリの詳細説明がここに表示されます。</p>
-                </div>
-            </div>
-        </div>
+    <div class="background-animation">
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+        <div class="background-element"></div>
+    </div>
+    <div class="top-container">
+        <div class="logo"></div>
+        <h1 class="title">たのしくなる<br>仕組みをつくろう</h1>
+        <p class="subtitle">Let's create mechanisms that make things fun</p>
+        <button class="start-button" onclick="startApp()">スタート</button>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 たのしくなる仕組みをつくろう. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo"></div>
-        <div class="loading-text">読み込み中...</div>
-        <div class="loading-spinner"></div>
-    </div>
-
-    <script src="script.js"></script>
     <script>
-        // Loading screen functionality
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                const pageContent = document.querySelector('.page-content');
-                
-                loadingScreen.classList.add('hidden');
-                pageContent.classList.add('loaded');
-                
-                // Remove loading screen from DOM after transition
-                setTimeout(function() {
-                    loadingScreen.remove();
-                }, 500);
-            }, 800); // Show loading for at least 800ms
-        });
+        function startApp() {
+            // フェードアウト効果
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '0';
+            
+            // 0.5秒後にindex.htmlに遷移
+            setTimeout(() => {
+                window.location.href = 'main.html';
+            }, 500);
+        }
     </script>
 </body>
 </html>
